@@ -8,9 +8,17 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --black:#0d0d0d; --dark:#141414; --gray:#1c1c1c; --mid:#2a2a2a;
-      --muted:#888; --white:#f2f0eb; --accent:#c8b832; --accent2:#e8d43a;
-      --font-d:'Barlow Condensed',sans-serif; --font-b:'DM Sans',sans-serif;
+      --black:#080c12;
+      --dark:#0d1219;
+      --gray:#111827;
+      --mid:#1e2a3a;
+      --muted:#6b7a8d;
+      --white:#eef2f7;
+      --accent:#1e6fff;
+      --accent2:#4d8fff;
+      --accent-glow:rgba(30,111,255,0.25);
+      --font-d:'Barlow Condensed',sans-serif;
+      --font-b:'DM Sans',sans-serif;
     }
     html { scroll-behavior: smooth; }
     body { background:var(--black); color:var(--white); font-family:var(--font-b); font-size:16px; line-height:1.6; overflow-x:hidden; }
@@ -21,20 +29,20 @@
     .sec-label::before { content:''; display:block; width:24px; height:1px; background:var(--accent2); }
     h2 { font-family:var(--font-d); font-weight:900; font-size:clamp(2.8rem,5vw,4.8rem); text-transform:uppercase; line-height:.93; letter-spacing:-.01em; }
     h3 { font-family:var(--font-d); font-weight:800; font-size:1.55rem; text-transform:uppercase; letter-spacing:.03em; margin-bottom:.6rem; }
-    .btn-primary { display:inline-block; background:var(--accent); color:var(--black); padding:1rem 2.2rem; font-family:var(--font-d); font-weight:800; font-size:1rem; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; border-radius:2px; transition:transform .2s,box-shadow .2s; }
-    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 10px 32px rgba(200,184,50,.28); }
-    .btn-outline { display:inline-block; border:1px solid rgba(255,255,255,.22); color:var(--white); padding:1rem 2.2rem; font-family:var(--font-d); font-weight:700; font-size:1rem; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; border-radius:2px; transition:border-color .2s,color .2s; }
+    .btn-primary { display:inline-block; background:var(--accent); color:var(--white); padding:1rem 2.2rem; font-family:var(--font-d); font-weight:800; font-size:1rem; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; border-radius:3px; transition:transform .2s,box-shadow .2s; }
+    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 10px 32px var(--accent-glow); }
+    .btn-outline { display:inline-block; border:1px solid rgba(255,255,255,.2); color:var(--white); padding:1rem 2.2rem; font-family:var(--font-d); font-weight:700; font-size:1rem; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; border-radius:3px; transition:border-color .2s,color .2s; }
     .btn-outline:hover { border-color:var(--accent2); color:var(--accent2); }
 
     /* NAV */
-    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:1.1rem 4rem; background:rgba(13,13,13,.92); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,.05); }
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:1.1rem 4rem; background:rgba(8,12,18,.95); backdrop-filter:blur(14px); border-bottom:1px solid rgba(30,111,255,.12); }
     .nav-logo { display:flex; align-items:center; gap:.75rem; text-decoration:none; }
     .nav-brand { font-family:var(--font-d); font-weight:900; font-size:1.1rem; letter-spacing:.12em; text-transform:uppercase; color:var(--white); line-height:1; }
     .nav-brand span { color:var(--accent2); display:block; font-size:.6rem; font-weight:500; letter-spacing:.2em; }
     .nav-links { display:flex; gap:2.2rem; list-style:none; }
     .nav-links a { font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
     .nav-links a:hover { color:var(--accent2); }
-    .nav-cta { background:var(--accent)!important; color:var(--black)!important; padding:.55rem 1.4rem; border-radius:2px; font-weight:700!important; }
+    .nav-cta { background:var(--accent)!important; color:var(--white)!important; padding:.55rem 1.4rem; border-radius:3px; font-weight:700!important; }
 
     /* HERO */
     .hero { min-height:100vh; padding-top:80px; display:grid; grid-template-columns:55% 45%; overflow:hidden; }
@@ -45,56 +53,74 @@
     .hero-text h1 em { font-style:normal; color:var(--accent2); display:block; }
     .hero-sub { font-size:.96rem; color:var(--muted); max-width:400px; line-height:1.85; margin-bottom:2.4rem; }
     .btn-group { display:flex; gap:1rem; flex-wrap:wrap; }
-    .hero-stats { display:flex; gap:2.8rem; margin-top:3.5rem; padding-top:2.5rem; border-top:1px solid rgba(255,255,255,.07); }
+    .hero-stats { display:flex; gap:2.8rem; margin-top:3.5rem; padding-top:2.5rem; border-top:1px solid rgba(30,111,255,.15); }
     .stat-n { font-family:var(--font-d); font-weight:900; font-size:2.4rem; line-height:1; color:var(--white); }
     .stat-l { font-size:.72rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; margin-top:.25rem; }
     .hero-visual { position:relative; overflow:hidden; }
     .hero-visual::before { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--black) 0%,transparent 35%); z-index:1; }
     .hero-visual::after { content:''; position:absolute; bottom:0; left:0; right:0; height:45%; background:linear-gradient(to top,var(--black),transparent); z-index:1; }
     .hero-img { width:100%; height:100%; object-fit:cover; object-position:top center; }
-    .hero-badge { position:absolute; bottom:2.5rem; right:2rem; z-index:2; width:108px; height:108px; border-radius:50%; background:var(--accent); color:var(--black); display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:var(--font-d); font-weight:900; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; text-align:center; line-height:1.3; animation:spin 22s linear infinite; }
+    .hero-badge { position:absolute; bottom:2.5rem; right:2rem; z-index:2; width:108px; height:108px; border-radius:50%; background:var(--accent); color:var(--white); display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:var(--font-d); font-weight:900; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; text-align:center; line-height:1.3; animation:spin 22s linear infinite; box-shadow:0 0 30px var(--accent-glow); }
     .hero-badge .big { font-size:1.6rem; font-weight:900; line-height:1; }
     @keyframes spin { to { transform:rotate(360deg); } }
 
     /* MARQUEE */
     .mqw { background:var(--accent); overflow:hidden; padding:.85rem 0; }
     .mqt { display:flex; white-space:nowrap; animation:mq 22s linear infinite; }
-    .mqi { font-family:var(--font-d); font-weight:800; font-size:1rem; text-transform:uppercase; letter-spacing:.08em; color:var(--black); padding:0 2rem; display:flex; align-items:center; gap:2rem; }
+    .mqi { font-family:var(--font-d); font-weight:800; font-size:1rem; text-transform:uppercase; letter-spacing:.08em; color:var(--white); padding:0 2rem; display:flex; align-items:center; gap:2rem; }
     .mqi::after { content:'✦'; font-size:.65rem; }
     @keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
+    /* DOR — seção de identificação */
+    #dor { background:var(--dark); position:relative; overflow:hidden; }
+    #dor::before { content:''; position:absolute; top:-200px; right:-200px; width:500px; height:500px; background:radial-gradient(circle, rgba(30,111,255,.08) 0%, transparent 70%); pointer-events:none; }
+    .dor-header { text-align:center; max-width:700px; margin:0 auto 4rem; }
+    .dor-header h2 { margin-bottom:1.2rem; }
+    .dor-header p { color:var(--muted); font-size:1rem; line-height:1.85; }
+    .dor-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(30,111,255,.1); margin-bottom:4rem; }
+    .dor-card { background:var(--dark); padding:2.5rem; position:relative; }
+    .dor-card::before { content:'"'; font-family:var(--font-d); font-size:6rem; color:rgba(30,111,255,.1); position:absolute; top:1rem; left:1.5rem; line-height:1; }
+    .dor-quote { font-size:.95rem; color:var(--muted); line-height:1.85; font-style:italic; position:relative; z-index:1; }
+    .dor-solucao { background:var(--accent); border-radius:3px; padding:3rem 4rem; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+    .dor-solucao h3 { font-family:var(--font-d); font-weight:900; font-size:2.2rem; text-transform:uppercase; color:var(--white); line-height:1.1; margin-bottom:1rem; }
+    .dor-solucao p { font-size:.9rem; color:rgba(255,255,255,.75); line-height:1.85; }
+    .dor-items { display:flex; flex-direction:column; gap:.8rem; }
+    .dor-item { display:flex; align-items:center; gap:.75rem; font-size:.9rem; color:var(--white); font-weight:500; }
+    .dor-item::before { content:'✓'; width:24px; height:24px; background:rgba(255,255,255,.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700; flex-shrink:0; }
+
     /* SOBRE */
-    #sobre { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; background:var(--dark); }
+    #sobre { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; background:var(--black); }
     .sobre-img-wrap { position:relative; }
-    .sobre-img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top center; border-radius:2px; }
-    .sobre-accent { position:absolute; bottom:-1.4rem; right:-1.4rem; background:var(--accent); color:var(--black); padding:1.4rem 1.8rem; border-radius:2px; }
+    .sobre-img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top center; border-radius:3px; }
+    .sobre-accent { position:absolute; bottom:-1.4rem; right:-1.4rem; background:var(--accent); color:var(--white); padding:1.4rem 1.8rem; border-radius:3px; box-shadow:0 8px 24px var(--accent-glow); }
     .sobre-accent .big { font-family:var(--font-d); font-weight:900; font-size:2.6rem; line-height:1; }
     .sobre-accent .small { font-size:.7rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; margin-top:.2rem; }
     .sobre-text h2 { margin-bottom:1.4rem; }
     .sobre-text p { color:var(--muted); line-height:1.9; margin-bottom:1.1rem; font-size:.93rem; }
     .tags { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.8rem; }
-    .tag { background:var(--mid); border:1px solid rgba(255,255,255,.07); color:var(--white); font-size:.72rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; padding:.42rem 1rem; border-radius:2px; }
+    .tag { background:var(--mid); border:1px solid rgba(30,111,255,.2); color:var(--white); font-size:.72rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; padding:.42rem 1rem; border-radius:3px; }
 
     /* MÉTODO B9 */
-    #metodo { background:var(--accent); color:var(--black); }
-    #metodo .sec-label { color:rgba(0,0,0,.5); }
-    #metodo .sec-label::before { background:rgba(0,0,0,.5); }
-    #metodo h2 { color:var(--black); margin-bottom:.8rem; }
-    .metodo-sub { font-size:1rem; color:rgba(0,0,0,.65); max-width:600px; line-height:1.8; margin-bottom:3.5rem; }
+    #metodo { background:var(--accent); color:var(--white); position:relative; overflow:hidden; }
+    #metodo::before { content:''; position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 70%); pointer-events:none; }
+    #metodo .sec-label { color:rgba(255,255,255,.6); }
+    #metodo .sec-label::before { background:rgba(255,255,255,.6); }
+    #metodo h2 { color:var(--white); margin-bottom:.8rem; }
+    .metodo-sub { font-size:1rem; color:rgba(255,255,255,.75); max-width:620px; line-height:1.85; margin-bottom:3.5rem; }
     .metodo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
-    .metodo-card { background:rgba(0,0,0,.08); padding:2rem; border-radius:2px; }
-    .metodo-num { font-family:var(--font-d); font-weight:900; font-size:3rem; color:rgba(0,0,0,.12); line-height:1; margin-bottom:.8rem; }
-    .metodo-card h3 { font-family:var(--font-d); font-weight:800; font-size:1.35rem; color:var(--black); text-transform:uppercase; margin-bottom:.5rem; }
-    .metodo-card p { font-size:.85rem; color:rgba(0,0,0,.6); line-height:1.75; }
-    .metodo-destaque { margin-top:3rem; background:rgba(0,0,0,.1); border-left:4px solid var(--black); padding:1.8rem 2rem; border-radius:0 2px 2px 0; }
-    .metodo-destaque p { font-family:var(--font-d); font-weight:700; font-size:1.15rem; color:var(--black); text-transform:uppercase; letter-spacing:.04em; line-height:1.5; }
+    .metodo-card { background:rgba(255,255,255,.08); padding:2rem; border-radius:3px; border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(4px); }
+    .metodo-num { font-family:var(--font-d); font-weight:900; font-size:3rem; color:rgba(255,255,255,.15); line-height:1; margin-bottom:.8rem; }
+    .metodo-card h3 { font-family:var(--font-d); font-weight:800; font-size:1.35rem; color:var(--white); text-transform:uppercase; margin-bottom:.5rem; }
+    .metodo-card p { font-size:.85rem; color:rgba(255,255,255,.7); line-height:1.75; }
+    .metodo-destaque { margin-top:3rem; background:rgba(255,255,255,.1); border-left:4px solid rgba(255,255,255,.5); padding:1.8rem 2rem; border-radius:0 3px 3px 0; }
+    .metodo-destaque p { font-family:var(--font-d); font-weight:700; font-size:1.2rem; color:var(--white); text-transform:uppercase; letter-spacing:.04em; line-height:1.5; }
 
     /* COMO FUNCIONA */
-    #como { background:var(--black); }
+    #como { background:var(--dark); }
     #como h2 { margin-bottom:1rem; }
     .como-sub { font-size:.95rem; color:var(--muted); max-width:560px; line-height:1.85; margin-bottom:3.5rem; }
-    .como-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5px; background:rgba(255,255,255,.05); }
-    .como-item { background:var(--black); padding:2.5rem; transition:background .3s; position:relative; overflow:hidden; }
+    .como-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5px; background:rgba(30,111,255,.1); }
+    .como-item { background:var(--dark); padding:2.5rem; transition:background .3s; position:relative; overflow:hidden; }
     .como-item::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--accent2); transition:width .4s; }
     .como-item:hover { background:var(--gray); }
     .como-item:hover::after { width:100%; }
@@ -103,55 +129,55 @@
     .como-item p { font-size:.875rem; color:var(--muted); line-height:1.8; }
 
     /* RESULTADOS */
-    #resultados { background:var(--dark); }
+    #resultados { background:var(--black); }
     #resultados h2 { margin-bottom:.8rem; }
     .res-sub { font-size:.95rem; color:var(--muted); max-width:500px; line-height:1.85; margin-bottom:3rem; }
     .res-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
-    .res-card { position:relative; overflow:hidden; border-radius:2px; aspect-ratio:4/5; cursor:pointer; }
-    .res-card img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; filter:grayscale(10%); }
+    .res-card { position:relative; overflow:hidden; border-radius:3px; aspect-ratio:4/5; cursor:pointer; }
+    .res-card img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
     .res-card:hover img { transform:scale(1.05); }
-    .res-card .res-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(13,13,13,.9) 0%,transparent 50%); opacity:0; transition:opacity .3s; display:flex; align-items:flex-end; padding:1.5rem; }
+    .res-card .res-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(8,12,18,.9) 0%,transparent 50%); opacity:0; transition:opacity .3s; display:flex; align-items:flex-end; padding:1.5rem; }
     .res-card:hover .res-overlay { opacity:1; }
     .res-label { font-family:var(--font-d); font-weight:800; font-size:1rem; text-transform:uppercase; letter-spacing:.08em; color:var(--accent2); }
 
     /* ESPECIALIZAÇÕES */
-    #especializacoes { background:var(--black); }
+    #especializacoes { background:var(--dark); }
     .espec-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; flex-wrap:wrap; gap:1.5rem; }
-    .espec-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1.5px; background:rgba(255,255,255,.05); }
-    .espec-card { background:var(--black); padding:2rem; position:relative; overflow:hidden; transition:background .3s; }
+    .espec-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1.5px; background:rgba(30,111,255,.1); }
+    .espec-card { background:var(--dark); padding:2rem; position:relative; overflow:hidden; transition:background .3s; }
     .espec-card::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--accent2); transition:width .4s; }
     .espec-card:hover { background:var(--gray); }
     .espec-card:hover::after { width:100%; }
-    .espec-num { font-family:var(--font-d); font-weight:900; font-size:3rem; color:rgba(255,255,255,.04); line-height:1; margin-bottom:.8rem; transition:color .3s; }
-    .espec-card:hover .espec-num { color:rgba(200,184,50,.1); }
+    .espec-num { font-family:var(--font-d); font-weight:900; font-size:3rem; color:rgba(30,111,255,.08); line-height:1; margin-bottom:.8rem; transition:color .3s; }
+    .espec-card:hover .espec-num { color:rgba(30,111,255,.2); }
     .espec-icon { font-size:1.4rem; margin-bottom:.9rem; }
     .espec-card h3 { color:var(--white); margin-bottom:.5rem; font-size:1.1rem; }
     .espec-card p { font-size:.82rem; color:var(--muted); line-height:1.8; }
 
     /* POR QUE */
-    #porque { background:var(--dark); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    #porque { background:var(--black); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
     .porq-list { margin-top:2.5rem; display:flex; flex-direction:column; }
-    .porq-item { display:flex; gap:1rem; padding:1.1rem 0; border-bottom:1px solid rgba(255,255,255,.06); align-items:flex-start; }
-    .porq-item:first-child { border-top:1px solid rgba(255,255,255,.06); }
-    .porq-icon { width:36px; height:36px; flex-shrink:0; background:rgba(200,184,50,.12); border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:.95rem; }
+    .porq-item { display:flex; gap:1rem; padding:1.1rem 0; border-bottom:1px solid rgba(30,111,255,.1); align-items:flex-start; }
+    .porq-item:first-child { border-top:1px solid rgba(30,111,255,.1); }
+    .porq-icon { width:36px; height:36px; flex-shrink:0; background:rgba(30,111,255,.1); border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:.95rem; }
     .porq-item strong { display:block; font-size:.9rem; font-weight:600; margin-bottom:.2rem; }
     .porq-item span { font-size:.82rem; color:var(--muted); line-height:1.6; }
     .porq-visual { position:relative; }
-    .porq-img-wrap { width:100%; aspect-ratio:4/5; border-radius:2px; overflow:hidden; }
+    .porq-img-wrap { width:100%; aspect-ratio:4/5; border-radius:3px; overflow:hidden; }
     .porq-img { width:100%; height:100%; object-fit:cover; object-position:top center; }
-    .porq-quote { position:absolute; bottom:2rem; left:-2rem; background:var(--accent); color:var(--black); padding:1.5rem 2rem; border-radius:2px; max-width:280px; }
+    .porq-quote { position:absolute; bottom:2rem; left:-2rem; background:var(--accent); color:var(--white); padding:1.5rem 2rem; border-radius:3px; max-width:280px; box-shadow:0 8px 32px var(--accent-glow); }
     .porq-quote p { font-family:var(--font-d); font-weight:800; font-size:1.1rem; text-transform:uppercase; line-height:1.25; }
-    .porq-quote small { font-size:.72rem; opacity:.6; margin-top:.4rem; display:block; }
+    .porq-quote small { font-size:.72rem; opacity:.7; margin-top:.4rem; display:block; }
 
     /* PLANOS */
-    #planos { background:var(--black); }
+    #planos { background:var(--dark); }
     .planos-header { margin-bottom:3.5rem; }
     .planos-header p.sub { font-size:.95rem; color:var(--muted); max-width:560px; line-height:1.85; margin-top:.8rem; }
-    .planos-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5px; background:rgba(255,255,255,.05); }
-    .plano-card { background:var(--black); padding:2rem 1.8rem; display:flex; flex-direction:column; position:relative; transition:background .3s; }
+    .planos-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5px; background:rgba(30,111,255,.1); }
+    .plano-card { background:var(--dark); padding:2rem 1.8rem; display:flex; flex-direction:column; position:relative; transition:background .3s; }
     .plano-card:hover { background:var(--gray); }
-    .plano-card.hot { background:var(--gray); border-top:3px solid var(--accent2); }
-    .plano-tag-top { font-family:var(--font-d); font-weight:800; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; background:var(--accent); color:var(--black); padding:.3rem .8rem; border-radius:1px; display:inline-block; margin-bottom:1rem; align-self:flex-start; }
+    .plano-card.hot { background:var(--gray); border-top:3px solid var(--accent); }
+    .plano-tag-top { font-family:var(--font-d); font-weight:800; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; background:var(--accent); color:var(--white); padding:.3rem .8rem; border-radius:1px; display:inline-block; margin-bottom:1rem; align-self:flex-start; }
     .plano-nome { font-family:var(--font-d); font-weight:900; font-size:1.7rem; text-transform:uppercase; letter-spacing:.03em; margin-bottom:.4rem; }
     .plano-ideal { font-size:.8rem; color:var(--muted); line-height:1.65; margin-bottom:1.2rem; font-style:italic; }
     .plano-de { font-size:.8rem; color:var(--muted); text-decoration:line-through; margin-bottom:.2rem; }
@@ -159,41 +185,42 @@
     .plano-por sup { font-size:1rem; vertical-align:top; margin-top:.4rem; }
     .plano-periodo { font-size:.75rem; color:var(--muted); margin-bottom:1.5rem; }
     .plano-inc { list-style:none; flex:1; margin-bottom:1.5rem; }
-    .plano-inc li { font-size:.82rem; color:var(--muted); padding:.5rem 0; border-bottom:1px solid rgba(255,255,255,.04); display:flex; align-items:center; gap:.55rem; }
+    .plano-inc li { font-size:.82rem; color:var(--muted); padding:.5rem 0; border-bottom:1px solid rgba(30,111,255,.07); display:flex; align-items:center; gap:.55rem; }
     .plano-inc li::before { content:'✓'; color:var(--accent2); font-weight:700; font-size:.75rem; flex-shrink:0; }
 
     /* PAGAMENTO */
-    #pagamento { background:var(--dark); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    #pagamento { background:var(--black); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
     .pgmt-info h2 { margin-bottom:1.2rem; }
     .pgmt-info > p { color:var(--muted); font-size:.93rem; line-height:1.85; margin-bottom:2.5rem; }
     .pgmt-methods { display:flex; flex-direction:column; gap:1rem; }
-    .pgmt-item { display:flex; align-items:center; gap:1rem; padding:1.2rem 1.5rem; background:var(--gray); border:1px solid rgba(255,255,255,.06); border-radius:2px; }
-    .pgmt-icon { width:42px; height:42px; flex-shrink:0; background:rgba(200,184,50,.12); border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
+    .pgmt-item { display:flex; align-items:center; gap:1rem; padding:1.2rem 1.5rem; background:var(--gray); border:1px solid rgba(30,111,255,.12); border-radius:3px; }
+    .pgmt-icon { width:42px; height:42px; flex-shrink:0; background:rgba(30,111,255,.1); border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
     .pgmt-item strong { display:block; font-size:.9rem; font-weight:600; }
     .pgmt-item small { font-size:.8rem; color:var(--muted); }
-    .pgmt-visual { width:100%; aspect-ratio:4/5; border-radius:2px; overflow:hidden; }
+    .pgmt-visual { width:100%; aspect-ratio:4/5; border-radius:3px; overflow:hidden; }
     .pgmt-visual img { width:100%; height:100%; object-fit:cover; object-position:top center; }
 
     /* CTA */
-    #cta { background:var(--black); text-align:center; padding:8rem 4rem; position:relative; overflow:hidden; }
-    #cta::before { content:'B9'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:var(--font-d); font-weight:900; font-size:22rem; color:rgba(255,255,255,.02); pointer-events:none; user-select:none; line-height:1; }
+    #cta { background:var(--dark); text-align:center; padding:8rem 4rem; position:relative; overflow:hidden; }
+    #cta::before { content:'B9'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:var(--font-d); font-weight:900; font-size:22rem; color:rgba(30,111,255,.04); pointer-events:none; user-select:none; line-height:1; }
+    #cta::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,transparent,var(--accent),transparent); }
     #cta .sec-label { justify-content:center; }
     #cta h2 { font-size:clamp(3rem,7vw,6.5rem); margin-bottom:1.2rem; }
     #cta .sub { font-size:1rem; color:var(--muted); max-width:480px; margin:0 auto 2.8rem; line-height:1.85; font-style:italic; }
     .cta-contact { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; margin-top:3rem; }
     .cta-link { display:flex; align-items:center; gap:.7rem; font-size:.85rem; font-weight:500; color:var(--muted); text-decoration:none; transition:color .2s; }
     .cta-link:hover { color:var(--accent2); }
-    .cta-link-ic { width:38px; height:38px; background:var(--gray); border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:1rem; transition:background .2s; }
+    .cta-link-ic { width:38px; height:38px; background:var(--gray); border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:1rem; transition:background .2s; }
     .cta-link:hover .cta-link-ic { background:var(--accent); }
 
     /* FOOTER */
-    footer { background:var(--dark); border-top:1px solid rgba(255,255,255,.05); padding:2.5rem 4rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.2rem; }
+    footer { background:var(--black); border-top:1px solid rgba(30,111,255,.1); padding:2.5rem 4rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.2rem; }
     .ft-logo { display:flex; align-items:center; gap:.7rem; text-decoration:none; }
     .ft-brand { font-family:var(--font-d); font-weight:900; font-size:1.05rem; letter-spacing:.12em; text-transform:uppercase; color:var(--white); line-height:1; }
     .ft-brand span { color:var(--accent2); display:block; font-size:.6rem; font-weight:500; letter-spacing:.2em; }
     footer p { font-size:.78rem; color:var(--muted); }
     .ft-social { display:flex; gap:.6rem; }
-    .soc { width:38px; height:38px; border:1px solid rgba(255,255,255,.1); border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:.8rem; color:var(--muted); text-decoration:none; transition:border-color .2s,color .2s; }
+    .soc { width:38px; height:38px; border:1px solid rgba(30,111,255,.2); border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:.8rem; color:var(--muted); text-decoration:none; transition:border-color .2s,color .2s; }
     .soc:hover { border-color:var(--accent2); color:var(--accent2); }
 
     @media(max-width:960px){
@@ -203,12 +230,13 @@
       section{padding:4rem 1.5rem;}
       #sobre,#porque,#pagamento{grid-template-columns:1fr;}
       .espec-grid,.metodo-grid{grid-template-columns:1fr 1fr;}
-      .como-grid{grid-template-columns:1fr;}
+      .como-grid,.dor-grid{grid-template-columns:1fr;}
       .planos-grid{grid-template-columns:1fr 1fr;}
       .res-grid{grid-template-columns:1fr 1fr;}
       footer{flex-direction:column;text-align:center;}
       .espec-header{flex-direction:column;align-items:flex-start;}
       .porq-quote{position:static;margin-top:1rem;max-width:100%;}
+      .dor-solucao{grid-template-columns:1fr;}
     }
     @media(max-width:600px){
       .planos-grid{grid-template-columns:1fr;}
@@ -222,7 +250,7 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="2" fill="rgba(200,184,50,0.1)"/><text x="6" y="30" font-family="Arial" font-weight="900" font-size="22" fill="#c8b832">B9</text></svg>
+    <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="2" fill="rgba(30,111,255,0.15)"/><text x="6" y="30" font-family="Arial" font-weight="900" font-size="22" fill="#4d8fff">B9</text></svg>
     <div class="nav-brand">Breno Nonato<span>Consultoria Online</span></div>
   </a>
   <ul class="nav-links">
@@ -262,11 +290,44 @@
   <div class="mqi">Treino Feminino</div><div class="mqi">Hipertrofia</div><div class="mqi">Periodização Prática</div><div class="mqi">Mobilidade</div><div class="mqi">Segurança do Treino</div><div class="mqi">Método B9</div><div class="mqi">App M-FIT Personal</div>
 </div></div>
 
+<!-- DOR -->
+<section id="dor">
+  <div class="dor-header fade-up">
+    <p class="sec-label" style="justify-content:center;">Isso te soa familiar?</p>
+    <h2>Cansado de treinos<br><em style="color:var(--accent2);font-style:normal;">que não cabem na sua vida?</em></h2>
+    <p>A maioria das consultorias trata você como atleta profissional — com treinos impossíveis de manter, cardio diário, dieta extrema. Funciona na primeira semana. Depois a realidade bate e tudo vai por água abaixo.</p>
+  </div>
+  <div class="dor-grid">
+    <div class="dor-card fade-up">
+      <p class="dor-quote">"O personal me passou um treino incrível, mas eu trabalho o dia todo, tenho filho, e simplesmente não consigo manter aquela rotina toda semana."</p>
+    </div>
+    <div class="dor-card fade-up">
+      <p class="dor-quote">"Já tentei várias consultorias. No começo até vai, mas aí a vida aperta e eu abandono tudo. Parece que os treinos foram feitos pra quem não tem compromisso nenhum."</p>
+    </div>
+    <div class="dor-card fade-up">
+      <p class="dor-quote">"Me deram uma planilha de planilha pronta. Sem suporte, sem ajuste, sem ninguém pra me explicar quando eu tinha dúvida. Paguei e fui abandonada."</p>
+    </div>
+  </div>
+  <div class="dor-solucao fade-up">
+    <div>
+      <h3>Com o Método B9,<br>a sua rotina é o ponto de partida</h3>
+      <p>Não vou te tratar como atleta. Vou te tratar como você é — uma pessoa com vida real, agenda cheia e objetivos sérios. O treino se encaixa em você, não você se encaixa no treino.</p>
+    </div>
+    <div class="dor-items">
+      <div class="dor-item">Treino ajustado para os dias e horários que você realmente tem</div>
+      <div class="dor-item">Sem cardio obrigatório e sem dieta de atleta</div>
+      <div class="dor-item">Suporte real para quando a vida complicar</div>
+      <div class="dor-item">Ajustes toda vez que sua rotina mudar</div>
+      <div class="dor-item">Resultado sustentável — não só na primeira semana</div>
+    </div>
+  </div>
+</section>
+
 <!-- SOBRE -->
 <section id="sobre">
   <div class="sobre-img-wrap fade-up">
     <img src="foto-sobre.jpg" alt="Breno Nonato" class="sobre-img">
-    <div class="sobre-accent"><div class="big">CREF</div><div class="small">Certificado</div></div>
+    <div class="sobre-accent"><div class="big">B9</div><div class="small">Método próprio</div></div>
   </div>
   <div class="sobre-text fade-up">
     <p class="sec-label">Quem sou eu</p>
@@ -275,7 +336,10 @@
     <p>Comecei no esporte pelas artes marciais, mas foi na musculação que encontrei meu propósito. Após estudar diferentes modalidades e entender o que realmente funciona, decidi focar na evolução física e na criação de um método simples, organizado e eficaz.</p>
     <p>Hoje sou referência fitness e já realizei mais de 1.000 consultorias com acompanhamento próximo e método direto, focado em resultado. Meu compromisso é te guiar com clareza e segurança — no seu ritmo e com constância.</p>
     <div class="tags">
-      <span class="tag">Ed. Física</span><span class="tag">CREF ativo</span><span class="tag">Artes Marciais</span><span class="tag">+1000 consultorias</span><span class="tag">Método B9</span>
+      <span class="tag">Ed. Física</span>
+      <span class="tag">Artes Marciais</span>
+      <span class="tag">+1000 consultorias</span>
+      <span class="tag">Método B9</span>
     </div>
   </div>
 </section>
@@ -284,26 +348,26 @@
 <section id="metodo">
   <p class="sec-label">O diferencial</p>
   <h2>Metodologia B9</h2>
-  <p class="metodo-sub">Desenvolvi esse método estudando a periodização utilizada por atletas de alto rendimento e adaptei tudo de forma prática e acessível para a sua realidade — para que você, uma pessoa comum com rotina real, possa treinar com muito mais eficiência, constância e resultado.</p>
+  <p class="metodo-sub">A Metodologia B9 foi criada para levar as pessoas aos melhores resultados no menor tempo possível — com tudo ajustado e adaptado à sua rotina. Não importa se você nunca treinou na vida ou se já tem experiência: o método parte de onde você está hoje e evolui junto com você, respeitando seus dias, seus horários e a vida que você já tem.</p>
   <div class="metodo-grid">
     <div class="metodo-card fade-up">
       <div class="metodo-num">01</div>
-      <h3>Simples de seguir</h3>
-      <p>Sem complicação. Treinos organizados e diretos ao ponto. Você abre o app, sabe exatamente o que fazer e executa — sem perder tempo nem ficar perdido.</p>
+      <h3>Treino que cabe na sua vida</h3>
+      <p>Você me conta sua rotina — quantos dias tem, qual horário, onde vai treinar — e eu monto um plano que funciona com isso. Sem precisar mudar sua vida pra treinar.</p>
     </div>
     <div class="metodo-card fade-up">
       <div class="metodo-num">02</div>
-      <h3>Feito pra sua rotina</h3>
-      <p>Não importa se você treina 2 ou 5 dias por semana. O método se adapta ao seu tempo real — porque treino bom é aquele que cabe na sua vida.</p>
+      <h3>Resultados no menor tempo</h3>
+      <p>Cada treino foi pensado para ser eficiente. Nada de volume desnecessário ou exercícios aleatórios. Cada movimento tem um propósito claro no seu resultado.</p>
     </div>
     <div class="metodo-card fade-up">
       <div class="metodo-num">03</div>
-      <h3>Progressão inteligente</h3>
-      <p>Periodização estratégica que garante evolução contínua, sem platô, sem lesão. Seu corpo vai mudar porque o treino evolui junto com você.</p>
+      <h3>Evolução constante e segura</h3>
+      <p>Periodização inteligente que garante progresso semana a semana — sem platô, sem lesão e sem precisar se matar pra ver resultado.</p>
     </div>
   </div>
   <div class="metodo-destaque fade-up">
-    <p>⚡ Qualquer pessoa consegue seguir — do iniciante ao avançado. O que muda é a intensidade, não a lógica. E essa lógica é o que faz tudo funcionar.</p>
+    <p>⚡ Você não precisa ter treinado antes. Não precisa ter tempo sobrando. Precisa só querer — o restante a gente constrói junto, do jeito que funciona pra você.</p>
   </div>
 </section>
 
@@ -341,47 +405,20 @@
   <div class="fade-up">
     <p class="sec-label">Prova real</p>
     <h2>Resultados<br>dos alunos</h2>
-    <p class="res-sub">Mais de 1.000 pessoas já transformaram o corpo com o método B9. Esses são alguns dos resultados reais — homens e mulheres, do iniciante ao avançado.</p>
+    <p class="res-sub">Mais de 1.000 pessoas já transformaram o corpo com o método B9. Esses são alguns dos resultados reais — pessoas comuns, com rotina corrida, que decidiram começar.</p>
   </div>
   <div class="res-grid">
-    <div class="res-card fade-up">
-      <img src="resultado1.jpg" alt="Resultado aluno B9">
-      <div class="res-overlay"><span class="res-label">Transformação real</span></div>
-    </div>
-    <div class="res-card fade-up">
-      <img src="resultado2.jpg" alt="Resultado aluno B9">
-      <div class="res-overlay"><span class="res-label">Transformação real</span></div>
-    </div>
-    <div class="res-card fade-up">
-      <img src="resultado3.jpg" alt="Resultado aluno B9">
-      <div class="res-overlay"><span class="res-label">Transformação real</span></div>
-    </div>
-    <div class="res-card fade-up">
-      <img src="resultado4.jpg" alt="Resultado aluno B9">
-      <div class="res-overlay"><span class="res-label">Transformação real</span></div>
-    </div>
-    <div class="res-card fade-up">
-      <img src="resultado5.jpg" alt="Resultado aluno B9">
-      <div class="res-overlay"><span class="res-label">Transformação real</span></div>
-    </div>
-    <div class="res-card fade-up">
-      <img src="resultado6.jpg" alt="Resultado aluno B9">
-      <div class="res-overlay"><span class="res-label">Transformação real</span></div>
-    </div>
-    <div class="res-card fade-up">
-      <img src="resultado7.jpg" alt="Resultado aluno B9">
-      <div class="res-overlay"><span class="res-label">Transformação real</span></div>
-    </div>
-    <div class="res-card fade-up">
-      <img src="resultado8.jpg" alt="Resultado aluno B9">
-      <div class="res-overlay"><span class="res-label">Transformação real</span></div>
-    </div>
-    <div class="res-card fade-up">
-      <img src="resultado9.jpg" alt="Resultado aluno B9">
-      <div class="res-overlay"><span class="res-label">Transformação real</span></div>
-    </div>
+    <div class="res-card fade-up"><img src="resultado1.jpg" alt="Resultado aluno B9"><div class="res-overlay"><span class="res-label">Transformação real</span></div></div>
+    <div class="res-card fade-up"><img src="resultado2.jpg" alt="Resultado aluno B9"><div class="res-overlay"><span class="res-label">Transformação real</span></div></div>
+    <div class="res-card fade-up"><img src="resultado3.jpg" alt="Resultado aluno B9"><div class="res-overlay"><span class="res-label">Transformação real</span></div></div>
+    <div class="res-card fade-up"><img src="resultado4.jpg" alt="Resultado aluno B9"><div class="res-overlay"><span class="res-label">Transformação real</span></div></div>
+    <div class="res-card fade-up"><img src="resultado5.jpg" alt="Resultado aluno B9"><div class="res-overlay"><span class="res-label">Transformação real</span></div></div>
+    <div class="res-card fade-up"><img src="resultado6.jpg" alt="Resultado aluno B9"><div class="res-overlay"><span class="res-label">Transformação real</span></div></div>
+    <div class="res-card fade-up"><img src="resultado7.jpg" alt="Resultado aluno B9"><div class="res-overlay"><span class="res-label">Transformação real</span></div></div>
+    <div class="res-card fade-up"><img src="resultado8.jpg" alt="Resultado aluno B9"><div class="res-overlay"><span class="res-label">Transformação real</span></div></div>
+    <div class="res-card fade-up"><img src="resultado9.jpg" alt="Resultado aluno B9"><div class="res-overlay"><span class="res-label">Transformação real</span></div></div>
   </div>
-  <div style="text-align:center; margin-top:3rem;" class="fade-up">
+  <div style="text-align:center;margin-top:3rem;" class="fade-up">
     <a href="https://wa.me/5531984665505" target="_blank" class="btn-primary">📲 Quero ser o próximo</a>
   </div>
 </section>
@@ -411,7 +448,7 @@
       <div class="porq-item"><div class="porq-icon">📱</div><div><strong>App M-FIT Personal — moderno e intuitivo</strong><span>Acesse seus treinos, veja os exercícios em vídeo e acompanhe sua evolução com uma das melhores ferramentas do mercado.</span></div></div>
       <div class="porq-item"><div class="porq-icon">🎯</div><div><strong>Correção direta da sua execução</strong><span>Mande o vídeo, eu corrijo. Técnica correta é a diferença entre evoluir e se machucar.</span></div></div>
       <div class="porq-item"><div class="porq-icon">💬</div><div><strong>Atendimento humano e real</strong><span>Você fala diretamente comigo. Sem assistente, sem robô, sem resposta genérica.</span></div></div>
-      <div class="porq-item"><div class="porq-icon">⏱️</div><div><strong>Foco em resultado e adaptação ao seu tempo</strong><span>O treino se adapta à sua rotina real — porque resultado não espera condição perfeita.</span></div></div>
+      <div class="porq-item"><div class="porq-icon">⏱️</div><div><strong>Treinos ajustados para a sua rotina</strong><span>Não importa se você nunca treinou antes ou se já tem experiência — o método parte de onde você está e avança no seu ritmo, com o tempo que você realmente tem.</span></div></div>
       <div class="porq-item"><div class="porq-icon">🏆</div><div><strong>Experiência comprovada — +1.000 consultorias</strong><span>Mais de 1.000 pessoas já transformaram o corpo com o método B9. Você é o próximo.</span></div></div>
     </div>
   </div>
@@ -515,7 +552,7 @@
 <!-- FOOTER -->
 <footer>
   <a href="#" class="ft-logo">
-    <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="2" fill="rgba(200,184,50,0.1)"/><text x="6" y="30" font-family="Arial" font-weight="900" font-size="22" fill="#c8b832">B9</text></svg>
+    <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="2" fill="rgba(30,111,255,0.15)"/><text x="6" y="30" font-family="Arial" font-weight="900" font-size="22" fill="#4d8fff">B9</text></svg>
     <div class="ft-brand">Breno Nonato<span>Consultoria Online</span></div>
   </a>
   <p>© 2026 Breno Nonato — B9 Consultoria Online · Todos os direitos reservados</p>
